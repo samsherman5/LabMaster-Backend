@@ -3,25 +3,14 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const mysql = require('mysql');
 
-
-
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const pingRouter = require('./routes/ping');
-const initRouter = require('./routes/initialize');
+const indexRouter = require('./api/routes/index');
+const usersRouter = require('./api/routes/users');
+const pingRouter = require('./api/routes/ping');
+const initRouter = require('./api/routes/initialize');
 
 const app = express();
 global.FLEETDB_DEV = [];
-global.con = mysql.createConnection({
-	host: "localhost",
-	user: "labmaster",
-	password: "ZdxbegR9@588@!E^",
-	port: '/tmp/mysql.sock'
-});
-
-con.connect();
 
 app.use(logger('dev'));
 app.use(express.json());

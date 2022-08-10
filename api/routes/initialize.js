@@ -1,6 +1,6 @@
 var express = require('express');
-const app = require("../app");
-const gen = require("../crypto/tokengen");
+const app = require("../../app");
+const gen = require("../../crypto/tokengen");
 var router = express.Router();
 
 /* COMPUTER INTIT ROUTE */
