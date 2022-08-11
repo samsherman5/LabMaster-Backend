@@ -11,8 +11,9 @@
     "dotenv": "^16.0.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "mongoose": "^6.5.2",
     "morgan": "~1.9.1",
-    "sql.js": "^1.7.0"
+    "rotating-file-stream": "^3.0.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"

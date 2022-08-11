@@ -1,5 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+
+const PCController = require('../controllers/pcs');
 
 /* COMPUTER PING ROUTE */
 /*
@@ -8,11 +10,6 @@ body: {
 	tstamp:
 }
  */
-router.post('/', function(req, res, next) {
-	res.status(200);
-	res.send(req.body)
-
-
-});
+router.get('/', PCController.ping_pc);
 
 module.exports = router;

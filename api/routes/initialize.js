@@ -1,8 +1,9 @@
-var express = require('express');
+const express = require('express');
 const app = require("../../app");
 const gen = require("../../crypto/tokengen");
-var router = express.Router();
+const router = express.Router();
 
+const PCController = require('../controllers/pcs')
 /* COMPUTER INTIT ROUTE */
 /*
 body: {
@@ -11,13 +12,6 @@ body: {
 }
 May add pubKey here
  */
-router.post('/', function(req, res, next) {
-	if(req.body.name && req.body.tstamp){
-		FLEETDB_DEV.push({name: req.body.name, token: gen(), tstamp: req.body.tstamp});
-		res.send(FLEETDB_DEV[FLEETDB_DEV.length-1]);
-	} else {
-		res.status(404);
-	}
-});
+router.post('/', PCController.add_pc);
 
 module.exports = router;
