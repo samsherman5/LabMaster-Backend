@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Command = require('../models/Command');
 
-exports.commands_get_all = (req, res, next) => {
-	Command.find()
+exports.commands_get_all = async (req, res, next) => {
+	await Command.find()
 		.select('_id type content targets dateExecuted')
 		.exec()
 		.then(docs => {
@@ -12,9 +12,10 @@ exports.commands_get_all = (req, res, next) => {
 					return {
 						_id: doc._id,
 						type: doc.type,
+						target: doc.target,
 						content: doc.content,
-						targets: doc.targets,
-						dateExecuted: doc.dateExecuted
+						executed: doc.executed,
+						dateExecuted: doc.dateSent
 					};
 				})
 			};
@@ -28,23 +29,25 @@ exports.commands_get_all = (req, res, next) => {
 };
 
 
-exports.create_command = (req, res, next) => {
+
+exports.create_command = async (req, res, next) => {
 	const command = new Command({
 		type: req.body.type,
+		target: req.body.target,
 		content: req.body.content,
-		targets: req.body.targets,
-		dateExecuted: new Date()
+		executed: false,
+		dateSent: new Date()
 	});
-	command.save()
+	await command.save()
 		.then(result => {
 			res.status(201).json({
 				message: 'Created command',
 				createdCommand: {
 					_id: result._id,
 					type: result.type,
+					target: result.target,
 					content: result.content,
-					targets: result.targets,
-					dateExecuted: result.dateExecuted
+					dateSent: result.dateSent
 				}
 			});
 		})

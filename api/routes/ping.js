@@ -5,9 +5,9 @@ const PCController = require('../controllers/pcs');
 
 /* COMPUTER PING ROUTE */
 /*
-body: {
-	mac:
-	tstamp:
+headers:{
+	random http headers...
+	id: pc id
 }
  */
 router.get('/', PCController.ping_pc);
